@@ -1,0 +1,74 @@
+/**
+ * Results Table Styles - TaxPro.au
+ */
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--black-light);
+    margin: 40px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.results-table thead {
+    background: var(--black);
+    border-bottom: 2px solid var(--gold);
+}
+
+.results-table th {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+    padding: 20px;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.results-table td {
+    padding: 20px;
+    color: var(--silver-light);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 16px;
+}
+
+.results-table tbody tr {
+    transition: background 0.3s ease;
+}
+
+.results-table tbody tr:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.results-table tbody tr.highlight-row {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid var(--gold);
+}
+
+.results-table tbody tr.highlight-row td {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.results-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.results-table td strong {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .results-table {
+        font-size: 14px;
+    }
+    
+    .results-table th,
+    .results-table td {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+}
+

@@ -1,0 +1,27 @@
+# Configuration files
+.env
+config.local.php
+google-sheets-credentials.json
+
+# Logs
+*.log
+contact_submissions.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+tmp/
+temp/
+cache/
+

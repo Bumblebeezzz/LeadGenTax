@@ -1,0 +1,17 @@
+{
+    "name": "taxpro-au/website",
+    "description": "TaxPro.au marketing website for accounting firms",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "google/apiclient": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TaxPro\\": "includes/"
+        }
+    }
+}
+

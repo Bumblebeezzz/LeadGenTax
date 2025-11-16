@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /includes/
+Disallow: /templates/
+Disallow: /.github/
+
+Sitemap: https://taxpro.au/sitemap.xml
+

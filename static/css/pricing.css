@@ -1,0 +1,135 @@
+/**
+ * Pricing Section Styles - TaxPro.au
+ */
+
+.pricing-section {
+    background: var(--black);
+    padding: 120px 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.pricing-card {
+    background: var(--black-light);
+    padding: 50px 40px;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.pricing-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--black-light) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--black);
+    padding: 8px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Lora', serif;
+}
+
+.pricing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.pricing-price {
+    margin-bottom: 20px;
+}
+
+.price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+}
+
+.price-period {
+    font-size: 16px;
+    color: var(--silver);
+    font-weight: 400;
+}
+
+.pricing-description {
+    color: var(--silver);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Override for white background cards */
+.pricing-card[style*="background: var(--white)"] .pricing-description,
+.pricing-card[style*="background: var(--white)"] .pricing-features,
+.pricing-card[style*="background: var(--white)"] .pricing-features li {
+    color: var(--black) !important;
+}
+
+.pricing-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.pricing-features li {
+    color: var(--silver-light);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-website {
+    max-width: 600px;
+    margin: 60px auto 0;
+    text-align: center;
+    padding: 50px 40px;
+    background: var(--black-light);
+    border: 2px solid var(--gold);
+    transition: all 0.4s ease;
+}
+
+.pricing-website:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 968px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
