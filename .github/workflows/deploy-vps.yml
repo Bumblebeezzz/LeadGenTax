@@ -25,8 +25,7 @@ jobs:
       
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
-            set -e
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} bash << 'DEPLOY_SCRIPT'
             set -x  # Mode debug activé
             
             echo "🚀 Début du déploiement..."
@@ -107,7 +106,7 @@ jobs:
             echo "✅ Déploiement terminé avec succès"
             echo "📊 Vérification finale:"
             ls -la /var/www/leadgentax.au/ | head -5
-          EOF
+          DEPLOY_SCRIPT
       
       - name: Cleanup
         if: always()

@@ -1,0 +1,41 @@
+name: Deploy Simple (Test)
+
+on:
+  workflow_dispatch:  # Déclenchement manuel uniquement pour test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts 2>&1
+          echo "✅ SSH configuré"
+      
+      - name: Test Connection
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} "echo 'Connexion OK'"
+      
+      - name: Simple Deploy
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} bash << 'DEPLOY_SCRIPT'
+            cd /var/www/leadgentax.au
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              echo "Pas de .git, arrêt"
+              exit 1
+            fi
+            echo "✅ Déploiement réussi"
+          DEPLOY_SCRIPT
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa
+
