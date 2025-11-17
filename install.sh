@@ -10,7 +10,16 @@ echo ""
 # Configuration
 VPS_IP="91.108.105.32"
 DOMAIN="leadgentax.au"
-INSTALL_DIR="/root/domains/${DOMAIN}/public_html"
+
+# Détecter automatiquement le meilleur répertoire d'installation
+if [ -d "/var/www" ]; then
+    INSTALL_DIR="/var/www/${DOMAIN}"
+elif [ -d "/root/domains" ]; then
+    INSTALL_DIR="/root/domains/${DOMAIN}/public_html"
+else
+    INSTALL_DIR="/root/${DOMAIN}"
+fi
+
 BACKUP_DIR="/root/backups/leadgentax_$(date +%Y%m%d_%H%M%S)"
 
 # Couleurs pour les messages
