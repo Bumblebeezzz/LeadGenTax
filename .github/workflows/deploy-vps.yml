@@ -1,0 +1,51 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts
+      
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+            cd /var/www/leadgentax.au
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp
+              rm -rf /var/www/leadgentax.au/*
+              cp -r /tmp/leadgentax_temp/* /var/www/leadgentax.au/
+              cp -r /tmp/leadgentax_temp/.git /var/www/leadgentax.au/ 2>/dev/null || true
+              rm -rf /tmp/leadgentax_temp
+            fi
+            chmod -R 755 .
+            find . -type f -exec chmod 644 {} \;
+            chmod 755 router.php index.php 2>/dev/null || true
+            if id "www-data" &>/dev/null; then
+              chown -R www-data:www-data . 2>/dev/null || true
+            elif id "nginx" &>/dev/null; then
+              chown -R nginx:nginx . 2>/dev/null || true
+            fi
+          EOF
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa
+
