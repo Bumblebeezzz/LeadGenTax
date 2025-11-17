@@ -3,13 +3,14 @@ services:
     name: leadgentax-website
     env: php
     plan: free
-    buildCommand: composer install --no-dev
+    buildCommand: |
+      if [ -f composer.json ]; then
+        composer install --no-dev --optimize-autoloader
+      fi
     startCommand: php -S 0.0.0.0:$PORT router.php
     envVars:
       - key: PHP_VERSION
         value: 8.1
-      - key: NODE_VERSION
-        value: ~
     healthCheckPath: /
     autoDeploy: true
 

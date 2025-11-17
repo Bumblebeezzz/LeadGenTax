@@ -40,8 +40,14 @@ if ($is_static) {
         // Set proper MIME type for video files
         if (strpos($request_path, '.mov') !== false) {
             header('Content-Type: video/quicktime');
+            header('Content-Length: ' . filesize($file_path));
+            readfile($file_path);
+            exit;
         } elseif (strpos($request_path, '.mp4') !== false) {
             header('Content-Type: video/mp4');
+            header('Content-Length: ' . filesize($file_path));
+            readfile($file_path);
+            exit;
         }
         return false; // Let PHP server serve the static file
     }
