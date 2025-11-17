@@ -25,7 +25,7 @@ $is_home = ($current_path === '/' || $current_path === '/index.php' || empty($cu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo e($page_title); ?></title>
     <?php echo generate_meta_tags($page_title, $page_description, $page_image); ?>
-    <!-- SEO Keywords: accounting lead generation Sydney, tax client acquisition Australia, CPA lead gen Melbourne, accountant marketing Brisbane -->
+    <!-- SEO Keywords: accounting lead generation Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin, tax client acquisition Australia, CPA lead gen -->
     <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg">
     <link rel="shortcut icon" type="image/svg+xml" href="/static/images/favicon.svg">
     <link rel="apple-touch-icon" href="/static/images/favicon.svg">

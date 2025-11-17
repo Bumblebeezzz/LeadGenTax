@@ -62,7 +62,7 @@ function generate_local_business_schema() {
             'addressLocality' => 'Sydney',
             'addressRegion' => 'NSW'
         ],
-        'description' => 'Accounting lead generation services for CPAs in Sydney, Melbourne & Brisbane. Generate 30+ qualified tax leads per month with Google Ads, AI agents, and conversion-optimized websites.',
+                'description' => 'Accounting lead generation services for CPAs in Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin & everywhere in Australia. Generate 30+ qualified tax leads per month with Google Ads, AI agents, and conversion-optimized websites.',
         'priceRange' => '$$',
         'areaServed' => [
             [

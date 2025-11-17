@@ -5,7 +5,7 @@
 require_once __DIR__ . '/includes/config.php';
 
 $page_title = 'Lead Generation for Accountants Sydney | Tax Client Growth Australia';
-$page_description = 'Generate more tax clients in Sydney, Melbourne & Brisbane. Accounting lead generation services for CPAs – get 30+ qualified leads/month.';
+$page_description = 'Generate more tax clients in Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin & everywhere in Australia. Accounting lead generation services for CPAs – get 30+ qualified leads/month.';
 
 include TEMPLATES_PATH . '/header.php';
 ?>
@@ -25,7 +25,7 @@ include TEMPLATES_PATH . '/header.php';
                 Accounting Lead Generation Sydney<br>
                 <span class="accent">Get 30+ Tax Clients Monthly</span>
             </h1>
-            <p class="hero-subtitle">Stop chasing clients. Let qualified <strong>tax leads</strong> come to your firm in <strong>Sydney, Melbourne & Brisbane</strong>. Proven CPA marketing that works.</p>
+            <p class="hero-subtitle">Stop chasing clients. Let qualified <strong>tax leads</strong> come to your firm in <strong>Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin & everywhere in Australia!</strong> Proven CPA marketing that works.</p>
             <div class="hero-cta">
                 <a href="#contact" class="cta-button cta-primary">Start Free 14-Day Trial →</a>
             </div>
@@ -104,7 +104,7 @@ include TEMPLATES_PATH . '/header.php';
     <!-- Local Focus Section -->
     <section class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Lead Generation for Accountants – Sydney, Melbourne, Brisbane</h2>
+            <h2 class="section-title">Lead Generation for Accountants – Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin & Everywhere in Australia</h2>
             <p class="section-subtitle" style="margin-bottom: 40px;">We target <strong style="color: var(--gold);">high-intent tax searches</strong> in your postcode:</p>
             <div style="max-width: 900px; margin: 0 auto;">
                 <ul class="service-features-list" style="list-style: none; padding: 0;">
