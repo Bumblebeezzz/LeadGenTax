@@ -25,25 +25,42 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
             set -e
-            cd /var/www/leadgentax.au
+            echo "🚀 Début du déploiement..."
+            
+            # Créer le répertoire s'il n'existe pas
+            mkdir -p /var/www/leadgentax.au
+            cd /var/www/leadgentax.au || exit 1
+            
+            # Mettre à jour via Git
             if [ -d ".git" ]; then
+              echo "📥 Mise à jour via git pull..."
               git fetch origin main || true
-              git reset --hard origin/main || git pull origin main
+              git reset --hard origin/main || {
+                echo "⚠️ git reset échoué, tentative avec git pull..."
+                git pull origin main || exit 1
+              }
             else
-              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp
-              rm -rf /var/www/leadgentax.au/*
-              cp -r /tmp/leadgentax_temp/* /var/www/leadgentax.au/
+              echo "📥 Clonage du repository..."
+              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp || exit 1
+              rm -rf /var/www/leadgentax.au/* /var/www/leadgentax.au/.[!.]* 2>/dev/null || true
+              cp -r /tmp/leadgentax_temp/* /var/www/leadgentax.au/ || exit 1
               cp -r /tmp/leadgentax_temp/.git /var/www/leadgentax.au/ 2>/dev/null || true
               rm -rf /tmp/leadgentax_temp
             fi
-            chmod -R 755 .
-            find . -type f -exec chmod 644 {} \;
+            
+            # Permissions
+            echo "🔐 Mise à jour des permissions..."
+            chmod -R 755 . || true
+            find . -type f -exec chmod 644 {} \; || true
             chmod 755 router.php index.php 2>/dev/null || true
+            
+            # Propriétaire
             if id "www-data" &>/dev/null; then
               chown -R www-data:www-data . 2>/dev/null || true
             elif id "nginx" &>/dev/null; then
               chown -R nginx:nginx . 2>/dev/null || true
             fi
+            
             echo "✅ Déploiement terminé avec succès"
           EOF
       
