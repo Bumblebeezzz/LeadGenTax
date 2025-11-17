@@ -1,4 +1,4 @@
-name: Deploy to Hostinger VPS
+name: Deploy to Hostinger VPS (FTP)
 
 on:
   push:
@@ -14,18 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-      
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.HOSTINGER_FTP_HOST }}
           username: ${{ secrets.HOSTINGER_FTP_USER }}
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          server-dir: /public_html/leadgentax/
+          server-dir: /root/domains/leadgentax.au/public_html/
           dangerous-clean-slate: false
           log-level: verbose
           exclude: |
@@ -33,6 +28,12 @@ jobs:
             **/.git*/**
             **/node_modules/**
             **/.DS_Store
+            **/install.sh
+            **/deploy-auto.sh
+            **/*.md
+            **/render.yaml
+            **/Dockerfile
+            **/.dockerignore
             **/README.md
             **/DEPLOYMENT_NOTES.md
             **/HOSTINGER_INSTALLATION_GUIDE.md
