@@ -96,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 // Form Submission Handler
 function handleFormSubmit(formId, messageId) {
     const form = document.getElementById(formId);
@@ -106,18 +112,33 @@ function handleFormSubmit(formId, messageId) {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.classList.add('loading');
-        submitButton.textContent = 'Sending...';
-        
         // Get form data
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        
+        // Validate email
+        if (data.email && !isValidEmail(data.email)) {
+            messageDiv.className = 'form-message error';
+            messageDiv.textContent = 'Please enter a valid email address.';
+            return;
+        }
+        
+        // Validate honeypot field (spam protection)
+        if (data.website && data.website.trim() !== '') {
+            // This is likely a bot, silently fail
+            messageDiv.className = 'form-message error';
+            messageDiv.textContent = 'Invalid submission. Please try again.';
+            return;
+        }
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.classList.add('loading');
+        submitButton.textContent = 'Sending...';
         
         try {
             const response = await fetch('/api/contact.php', {
@@ -134,6 +155,15 @@ function handleFormSubmit(formId, messageId) {
                 messageDiv.className = 'form-message success';
                 messageDiv.textContent = result.message || 'Thank you! We will contact you within 24 hours.';
                 form.reset();
+                
+                // Track conversion in GA4
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submission', {
+                        'event_category': 'Contact',
+                        'event_label': formId,
+                        'value': 1
+                    });
+                }
                 
                 // Hide popup if it's the popup form
                 if (formId === 'popup-contact-form') {
@@ -163,6 +193,29 @@ function handleFormSubmit(formId, messageId) {
 document.addEventListener('DOMContentLoaded', function() {
     handleFormSubmit('footer-contact-form', 'form-message');
     handleFormSubmit('popup-contact-form', 'popup-form-message');
+});
+
+// Video fallback handler - hide video if it fails to load, show image
+document.addEventListener('DOMContentLoaded', function() {
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+        heroVideo.addEventListener('error', function() {
+            // Video failed to load, it will fall back to the background image
+            this.style.display = 'none';
+        });
+        
+        // Check if video can actually play
+        heroVideo.addEventListener('loadeddata', function() {
+            // Video loaded successfully
+        }, { once: true });
+        
+        // If video doesn't start playing after 3 seconds, hide it
+        setTimeout(function() {
+            if (heroVideo.readyState < 2) {
+                heroVideo.style.display = 'none';
+            }
+        }, 3000);
+    }
 });
 
 // Smooth scroll for anchor links

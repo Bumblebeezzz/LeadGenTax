@@ -34,6 +34,9 @@ define('GOOGLE_SHEETS_RANGE', 'Sheet1!A:E'); // Columns: Timestamp, First Name, 
 define('TELEGRAM_BOT_TOKEN', ''); // To be configured
 define('TELEGRAM_CHAT_ID', ''); // To be configured (your Telegram chat ID)
 
+// Google Analytics 4 Configuration
+define('GA4_MEASUREMENT_ID', ''); // To be configured (e.g., 'G-XXXXXXXXXX')
+
 // Timezone
 date_default_timezone_set('Australia/Sydney');
 

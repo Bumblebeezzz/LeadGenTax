@@ -43,6 +43,17 @@ $is_home = ($current_path === '/' || $current_path === '/index.php' || empty($cu
     <link rel="stylesheet" href="/static/css/services-enhanced.css?v=<?php echo time(); ?>&nocache=<?php echo rand(1000, 9999); ?>">
     
     <?php echo generate_local_business_schema(); ?>
+    
+    <!-- Google Analytics 4 -->
+    <?php if (defined('GA4_MEASUREMENT_ID') && !empty(GA4_MEASUREMENT_ID)): ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo e(GA4_MEASUREMENT_ID); ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '<?php echo e(GA4_MEASUREMENT_ID); ?>');
+    </script>
+    <?php endif; ?>
 </head>
 <body>
     <!-- Navigation -->
