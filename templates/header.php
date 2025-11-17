@@ -1,6 +1,6 @@
 <?php
 /**
- * Header Template - TaxPro.au PHP
+ * Header Template - LeadGenTax.au PHP
  * Include this file at the beginning of each page
  */
 
@@ -19,12 +19,13 @@ $current_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $is_home = ($current_path === '/' || $current_path === '/index.php' || empty($current_path));
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo e($page_title); ?></title>
     <?php echo generate_meta_tags($page_title, $page_description, $page_image); ?>
+    <!-- SEO Keywords: accounting lead generation Sydney, tax client acquisition Australia, CPA lead gen Melbourne, accountant marketing Brisbane -->
     <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg">
     <link rel="shortcut icon" type="image/svg+xml" href="/static/images/favicon.svg">
     <link rel="apple-touch-icon" href="/static/images/favicon.svg">
@@ -49,7 +50,7 @@ $is_home = ($current_path === '/' || $current_path === '/index.php' || empty($cu
         <div class="container">
             <div class="nav-brand">
                 <a href="/">
-                    <img src="/static/images/logo-taxpro.svg" alt="<?php echo e(SITE_NAME); ?>" class="nav-logo">
+                    <img src="/static/images/logo-leadgentax.png" alt="<?php echo e(SITE_NAME); ?>" class="nav-logo">
                 </a>
             </div>
             <div class="nav-menu" id="navMenu">

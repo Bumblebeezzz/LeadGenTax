@@ -5,5 +5,5 @@ Disallow: /includes/
 Disallow: /templates/
 Disallow: /.github/
 
-Sitemap: https://taxpro.au/sitemap.xml
+Sitemap: https://leadgentax.au/sitemap.xml
 

@@ -1,45 +1,10 @@
-    <!-- Footer Contact Form (only on home page) -->
-    <?php if (strpos($current_path, '/') === false || $current_path === '/' || $current_path === '/index.php' || empty($current_path)): ?>
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">Request Your Free 14-Day Audit</h2>
-            <p class="section-subtitle">Get started today and see how we can help your accounting firm grow</p>
-            
-            <form id="footer-contact-form" class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" name="first_name" placeholder="First Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="last_name" placeholder="Last Name" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="firm_name" placeholder="Firm Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone (Optional)">
-                </div>
-                <!-- Honeypot field -->
-                <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
-                <button type="submit" class="cta-button">Request Free Audit</button>
-                <div id="form-message" class="form-message"></div>
-            </form>
-        </div>
-    </section>
-    <?php endif; ?>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <img src="/static/images/logo-taxpro.svg" alt="<?php echo e(SITE_NAME); ?>" style="height: 35px; margin-bottom: 20px; filter: brightness(0.9);">
+                    <img src="/static/images/logo-leadgentax.png" alt="<?php echo e(SITE_NAME); ?>" style="height: 35px; margin-bottom: 20px; filter: brightness(0.9);">
                     <p>Marketing solutions for accounting firms. Generate more appointments and grow your practice with AI-powered tools and proven strategies.</p>
                 </div>
                 <div class="footer-section">
@@ -60,7 +25,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> <?php echo e(SITE_NAME); ?>. All rights reserved.</p>
+                <p>&copy; 2023 <?php echo e(SITE_NAME); ?>. All rights reserved.</p>
+                <p style="margin-top: 8px; color: var(--silver); font-size: 11px; opacity: 0.8;">ABN 22 689 463 894</p>
             </div>
         </div>
     </footer>

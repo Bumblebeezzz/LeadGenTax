@@ -1,5 +1,5 @@
 /**
- * Main JavaScript - TaxPro.au
+ * Main JavaScript - LeadGenTax.au
  * Pop-up, form handling, animated stats
  */
 

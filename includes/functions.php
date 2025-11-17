@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper Functions - TaxPro.au
+ * Helper Functions - LeadGenTax.au
  */
 
 /**
@@ -25,7 +25,7 @@ function generate_meta_tags($title, $description, $image = '') {
     
     $html = "\n";
     $html .= "    <meta name=\"description\" content=\"" . e($description) . "\">\n";
-    $html .= "    <meta name=\"keywords\" content=\"accounting firm marketing, tax accountant marketing, small business accounting, Google Ads for accountants, AI receptionist\">\n";
+    $html .= "    <meta name=\"keywords\" content=\"accounting lead generation Sydney, tax client acquisition Australia, CPA lead gen Melbourne, accountant marketing Brisbane\">\n";
     $html .= "    <meta name=\"author\" content=\"" . e($site_name) . "\">\n";
     $html .= "\n";
     $html .= "    <!-- Open Graph / Facebook -->\n";
@@ -46,7 +46,7 @@ function generate_meta_tags($title, $description, $image = '') {
 }
 
 /**
- * Generate LocalBusiness Schema JSON-LD
+ * Generate LocalBusiness Schema JSON-LD with Services
  */
 function generate_local_business_schema() {
     $schema = [
@@ -54,16 +54,86 @@ function generate_local_business_schema() {
         '@type' => 'LocalBusiness',
         'name' => SITE_NAME,
         'telephone' => CONTACT_PHONE,
+        'email' => CONTACT_EMAIL,
         'url' => SITE_URL,
         'address' => [
             '@type' => 'PostalAddress',
-            'addressCountry' => 'AU'
+            'addressCountry' => 'AU',
+            'addressLocality' => 'Sydney',
+            'addressRegion' => 'NSW'
         ],
-        'description' => 'Marketing solutions for accounting firms. AI Receptionist 24/7, Google Ads, and optimized websites to generate +25 appointments per year.',
+        'description' => 'Accounting lead generation services for CPAs in Sydney, Melbourne & Brisbane. Generate 30+ qualified tax leads per month with Google Ads, AI agents, and conversion-optimized websites.',
         'priceRange' => '$$',
         'areaServed' => [
-            '@type' => 'Country',
-            'name' => 'Australia'
+            [
+                '@type' => 'City',
+                'name' => 'Sydney'
+            ],
+            [
+                '@type' => 'City',
+                'name' => 'Melbourne'
+            ],
+            [
+                '@type' => 'City',
+                'name' => 'Brisbane'
+            ],
+            [
+                '@type' => 'Country',
+                'name' => 'Australia'
+            ]
+        ],
+        'hasOfferCatalog' => [
+            '@type' => 'OfferCatalog',
+            'name' => 'Accounting Lead Generation Services',
+            'itemListElement' => [
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'Service',
+                        'name' => 'Google Ads Management',
+                        'description' => 'Targeted Google Ads campaigns for accounting firms. 14-day free trial available.',
+                        'provider' => [
+                            '@type' => 'LocalBusiness',
+                            'name' => SITE_NAME
+                        ],
+                        'areaServed' => [
+                            '@type' => 'Country',
+                            'name' => 'Australia'
+                        ]
+                    ]
+                ],
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'Service',
+                        'name' => 'Website Development & Optimization',
+                        'description' => 'Professional websites designed to convert visitors into tax clients.',
+                        'provider' => [
+                            '@type' => 'LocalBusiness',
+                            'name' => SITE_NAME
+                        ]
+                    ]
+                ],
+                [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'Service',
+                        'name' => 'AI Response Services',
+                        'description' => '24/7 automated customer support and lead qualification with Website AI Agent and Phone AI Agent.',
+                        'provider' => [
+                            '@type' => 'LocalBusiness',
+                            'name' => SITE_NAME
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        'aggregateRating' => [
+            '@type' => 'AggregateRating',
+            'ratingValue' => '4.9',
+            'reviewCount' => '220',
+            'bestRating' => '5',
+            'worstRating' => '1'
         ]
     ];
     

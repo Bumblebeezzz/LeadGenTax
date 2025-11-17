@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact API Endpoint - TaxPro.au
+ * Contact API Endpoint - LeadGenTax.au
  * Handles POST requests from contact form
  */
 

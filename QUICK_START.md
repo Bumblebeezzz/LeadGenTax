@@ -1,11 +1,11 @@
-# Quick Start Guide - TaxPro.au
+# Quick Start Guide - LeadGenTax.au
 
 ## 🚀 Get Started in 5 Minutes
 
 ### 1. Local Testing
 
 ```bash
-cd TAXPRO_AU_PHP
+cd LEADGENTAX_PHP
 php -S localhost:8000 router.php
 ```
 

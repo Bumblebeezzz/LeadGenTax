@@ -1,6 +1,6 @@
 <?php
 /**
- * Services Page - TaxPro.au
+ * Services Page - LeadGenTax.au
  */
 require_once __DIR__ . '/includes/config.php';
 
@@ -9,6 +9,13 @@ $page_description = 'Comprehensive marketing solutions for accounting firms: Goo
 
 include TEMPLATES_PATH . '/header.php';
 ?>
+
+    <!-- Orange Banner -->
+    <div style="background: #FF6B35; color: var(--white); text-align: center; padding: 15px 0; font-weight: 600; font-size: 16px; letter-spacing: 0.5px; position: relative; z-index: 999;">
+        <a href="/contact" style="color: var(--white); text-decoration: none; display: block;">
+            🚀 FREE 14-Day Trial – No Setup Fee – Start Now
+        </a>
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -125,7 +132,7 @@ include TEMPLATES_PATH . '/header.php';
             <!-- Google Ads Pricing Cards -->
             <div class="pricing-grid" style="background: transparent; margin-top: 60px;">
                 <div class="pricing-card" style="background: var(--white); border: 2px solid rgba(212, 175, 55, 0.3);">
-                    <div class="pricing-badge" style="background: var(--gold); color: var(--black);">Most Popular</div>
+                    <div class="pricing-badge" style="background: var(--gold); color: var(--black);">Free Trial</div>
                     <h3 class="pricing-title" style="color: var(--black);">14-Day Free Trial</h3>
                     <div class="pricing-price">
                         <span class="price-amount" style="color: var(--gold);">$0</span>
@@ -146,7 +153,7 @@ include TEMPLATES_PATH . '/header.php';
                 </div>
                 
                 <div class="pricing-card featured" style="background: var(--white); border: 2px solid var(--gold);">
-                    <div class="pricing-badge" style="background: var(--gold); color: var(--black);">Best Value</div>
+                    <div class="pricing-badge" style="background: var(--gold); color: var(--black);">Most Popular</div>
                     <h3 class="pricing-title" style="color: var(--black);">Starter</h3>
                     <div class="pricing-price">
                         <span class="price-amount" style="color: var(--gold);">$1,000</span>
@@ -253,7 +260,7 @@ include TEMPLATES_PATH . '/header.php';
                         <div class="service-icon">🌐</div>
                         <h3 class="service-title" style="color: var(--gold);">Professional Website</h3>
                         <div class="service-pricing">
-                            <span class="service-price" style="color: var(--gold);">Custom Pricing</span>
+                            <span class="service-price" style="color: var(--gold);">From $3,500 AUD</span>
                             <span class="service-price-month" style="color: var(--silver-light);">5-10 pages with advanced features</span>
                         </div>
                         <p class="service-description" style="color: var(--silver-light);">

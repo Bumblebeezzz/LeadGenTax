@@ -1,11 +1,11 @@
 <?php
 /**
- * About Page - TaxPro.au
+ * About Page - LeadGenTax
  */
 require_once __DIR__ . '/includes/config.php';
 
 $page_title = 'About Us - ' . SITE_NAME;
-$page_description = 'Learn about TaxPro.au and how we help accounting firms grow with AI-powered marketing solutions.';
+$page_description = 'Learn about LeadGenTax and how we help accounting firms grow with AI-powered marketing solutions.';
 
 include TEMPLATES_PATH . '/header.php';
 ?>
@@ -24,7 +24,7 @@ include TEMPLATES_PATH . '/header.php';
             <div style="max-width: 900px; margin: 0 auto;">
                 <h2 class="section-title" style="text-align: left; margin-bottom: 40px;">Our Mission</h2>
                 <p style="font-size: 18px; line-height: 1.8; color: var(--text-light); margin-bottom: 40px;">
-                    At TaxPro, we understand that accounting firms face unique challenges in today's competitive market. 
+                    At LeadGenTax, we understand that accounting firms face unique challenges in today's competitive market. 
                     Our mission is to provide cutting-edge marketing solutions that help practices grow sustainably while 
                     maintaining the highest standards of professionalism.
                 </p>
@@ -40,7 +40,7 @@ include TEMPLATES_PATH . '/header.php';
                     regardless of size, and we're dedicated to making that vision a reality.
                 </p>
 
-                <h2 class="section-title" style="text-align: left; margin-bottom: 40px; font-size: 36px;">Why Choose TaxPro</h2>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 40px; font-size: 36px;">Why Choose LeadGenTax</h2>
                 <div style="display: grid; gap: 30px; margin-bottom: 60px;">
                     <div style="padding: 30px; border-left: 4px solid var(--gold); background: var(--silver-bg);">
                         <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--black); margin-bottom: 12px;">Proven Track Record</h3>
@@ -71,7 +71,7 @@ include TEMPLATES_PATH . '/header.php';
                 <div style="text-align: center; padding: 60px 0; border-top: 1px solid var(--silver-light);">
                     <h2 class="section-title" style="font-size: 36px; margin-bottom: 20px;">Ready to Grow Your Practice?</h2>
                     <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px;">Start with a free 14-day audit and discover how we can help you achieve your growth goals.</p>
-                    <a href="/contact" class="cta-button">Get Your Free Audit</a>
+                    <a href="/audit" class="btn cta-button">Get Free Audit →</a>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ if (empty($request_path) || $request_path === 'index.php' || $request_path === '
 }
 
 // Check if it's a static file (CSS, JS, images, etc.)
-$static_extensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.xml', '.txt', '.mp4', '.webm', '.ogg', '.json'];
+$static_extensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.xml', '.txt', '.mp4', '.webm', '.ogg', '.mov', '.json'];
 $is_static = false;
 foreach ($static_extensions as $ext) {
     if (strpos($request_path, $ext) !== false) {
@@ -37,6 +37,12 @@ foreach ($static_extensions as $ext) {
 if ($is_static) {
     $file_path = __DIR__ . '/' . $request_path;
     if (file_exists($file_path)) {
+        // Set proper MIME type for video files
+        if (strpos($request_path, '.mov') !== false) {
+            header('Content-Type: video/quicktime');
+        } elseif (strpos($request_path, '.mp4') !== false) {
+            header('Content-Type: video/mp4');
+        }
         return false; // Let PHP server serve the static file
     }
 }

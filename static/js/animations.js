@@ -1,5 +1,5 @@
 /**
- * Scroll Animations - TaxPro.au
+ * Scroll Animations - LeadGenTax.au
  * Sophisticated scroll-triggered animations
  */
 

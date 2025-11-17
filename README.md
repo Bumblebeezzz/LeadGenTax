@@ -1,4 +1,4 @@
-# TaxPro.au - Marketing Site for Accounting Firms
+# LeadGenTax.au - Marketing Site for Accounting Firms
 
 Professional marketing website for accounting firms, built with PHP. Generates leads through AI Receptionist 24/7, Google Ads, and optimized website solutions.
 
@@ -14,7 +14,7 @@ Professional marketing website for accounting firms, built with PHP. Generates l
 ## Structure
 
 ```
-TAXPRO_AU_PHP/
+LEADGENTAX_PHP/
 ├── index.php              # Main landing page
 ├── router.php             # URL routing
 ├── .htaccess             # Apache configuration
@@ -83,7 +83,7 @@ TAXPRO_AU_PHP/
 ### Using PHP Built-in Server
 
 ```bash
-cd TAXPRO_AU_PHP
+cd LEADGENTAX_PHP
 php -S localhost:8000 router.php
 ```
 
@@ -91,7 +91,7 @@ Visit `http://localhost:8000`
 
 ### Using Apache/Nginx
 
-1. Point your web server document root to `TAXPRO_AU_PHP/`
+1. Point your web server document root to `LEADGENTAX_PHP/`
 2. Ensure `.htaccess` is enabled (mod_rewrite)
 3. Visit your domain
 
@@ -148,7 +148,7 @@ Edit CSS variables in `static/css/style.css`:
 
 ## Support
 
-For issues or questions, contact: contact@taxpro.au
+For issues or questions, contact: contact@leadgentax.au
 
 ## License
 

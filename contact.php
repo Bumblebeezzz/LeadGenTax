@@ -1,11 +1,11 @@
 <?php
 /**
- * Contact Page - TaxPro.au
+ * Contact Page - LeadGenTax.au
  */
 require_once __DIR__ . '/includes/config.php';
 
 $page_title = 'Contact Us - ' . SITE_NAME;
-$page_description = 'Get in touch with TaxPro.au for a free 14-day audit. Discover how we can help your accounting firm grow.';
+$page_description = 'Get in touch with LeadGenTax.au for a free 14-day audit. Discover how we can help your accounting firm grow.';
 
 include TEMPLATES_PATH . '/header.php';
 ?>

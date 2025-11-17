@@ -1,48 +1,123 @@
 <?php
 /**
- * Home Page - TaxPro.au
+ * Home Page - LeadGenTax.au
  */
 require_once __DIR__ . '/includes/config.php';
 
-$page_title = SITE_NAME . ' - Marketing for Accounting Firms | +25 Appointments/Year';
-$page_description = 'AI Receptionist 24/7 + Google Ads + Optimized Website. Generate +25 appointments per year for your accounting firm. Free 14-day audit.';
+$page_title = 'Lead Generation for Accountants Sydney | Tax Client Growth Australia';
+$page_description = 'Generate more tax clients in Sydney, Melbourne & Brisbane. Accounting lead generation services for CPAs – get 30+ qualified leads/month.';
 
 include TEMPLATES_PATH . '/header.php';
 ?>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
+    <section class="hero" style="position: relative; overflow: hidden; min-height: 90vh; display: flex; align-items: center; justify-content: center;">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; object-fit: cover; opacity: 0.4;">
+            <source src="/static/videos/LeadGenTax.mov" type="video/quicktime">
+            <source src="/static/videos/LeadGenTax.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Overlay for better text readability -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.75) 100%); z-index: 1;"></div>
+        <div class="hero-content" style="position: relative; z-index: 2;">
             <h1 class="hero-title">
-                +25 Qualified Appointments<br>
-                <span class="accent">Per Year for Your Accounting Firm</span>
+                Accounting Lead Generation Sydney<br>
+                <span class="accent">Get 30+ Tax Clients Monthly</span>
             </h1>
-            <p class="hero-subtitle">AI Receptionist 24/7 · Google Ads · Conversion-Optimized Website</p>
+            <p class="hero-subtitle">Stop chasing clients. Let qualified <strong>tax leads</strong> come to your firm in <strong>Sydney, Melbourne & Brisbane</strong>. Proven CPA marketing that works.</p>
             <div class="hero-cta">
-                <a href="/contact" class="cta-button cta-primary">Start 14-Day Free Trial</a>
+                <a href="#contact" class="cta-button cta-primary">Start Free 14-Day Trial →</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Trust Badges Section -->
     <section class="stats-section">
         <div class="container">
-            <div class="stats-grid">
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); gap: 40px;">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="220">0</span>
-                    <span class="stat-plus">+</span>
-                    <p class="stat-label">Firms Served</p>
+                    <span class="stat-label" style="color: var(--gold); font-size: 18px; font-weight: 600;">✓ 500+ Australian Accountants Served</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="98">0</span>
-                    <span class="stat-percent">%</span>
-                    <p class="stat-label">Client Retention</p>
+                    <span class="stat-label" style="color: var(--gold); font-size: 18px; font-weight: 600;">✓ ATO-Compliant Lead Flow</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="3">0</span>
-                    <span class="stat-x">x</span>
-                    <p class="stat-label">Average ROI</p>
+                    <span class="stat-label" style="color: var(--gold); font-size: 18px; font-weight: 600;">✓ Google Partner Agency</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Why Accountants Choose LeadGenTax.au</h2>
+            <div style="max-width: 900px; margin: 0 auto; margin-top: 50px;">
+                <ul class="service-features-list" style="list-style: none; padding: 0;">
+                    <li style="padding: 25px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 20px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--gold); font-weight: 700; margin-right: 15px; font-size: 24px;">✓</span>
+                        <div>
+                            <strong style="color: var(--gold); font-size: 18px; display: block; margin-bottom: 8px;">Exclusive Tax Leads</strong>
+                            <span style="color: var(--silver-light); font-size: 16px; line-height: 1.7;">Only pre-qualified BAS, GST & SMSF clients.</span>
+                        </div>
+                    </li>
+                    <li style="padding: 25px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 20px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--gold); font-weight: 700; margin-right: 15px; font-size: 24px;">✓</span>
+                        <div>
+                            <strong style="color: var(--gold); font-size: 18px; display: block; margin-bottom: 8px;">Local SEO Dominance</strong>
+                            <span style="color: var(--silver-light); font-size: 16px; line-height: 1.7;">Rank #1 for "accountant near me" in your suburb.</span>
+                        </div>
+                    </li>
+                    <li style="padding: 25px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 20px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--gold); font-weight: 700; margin-right: 15px; font-size: 24px;">✓</span>
+                        <div>
+                            <strong style="color: var(--gold); font-size: 18px; display: block; margin-bottom: 8px;">Zero Upfront Cost</strong>
+                            <span style="color: var(--silver-light); font-size: 16px; line-height: 1.7;">Pay only per booked appointment.</span>
+                        </div>
+                    </li>
+                    <li style="padding: 25px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 20px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--gold); font-weight: 700; margin-right: 15px; font-size: 24px;">✓</span>
+                        <div>
+                            <strong style="color: var(--gold); font-size: 18px; display: block; margin-bottom: 8px;">Full CRM Sync</strong>
+                            <span style="color: var(--silver-light); font-size: 16px; line-height: 1.7;">Leads auto-import to Xero Practice Manager, MYOB AE or Karbon.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="testimonials-section section-dark">
+        <div class="container">
+            <h2 class="section-title">Real Results for Australian CPAs</h2>
+            <div style="max-width: 800px; margin: 50px auto; text-align: center; padding: 50px; background: var(--black-light); border: 2px solid var(--gold);">
+                <blockquote style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); line-height: 1.6; margin: 0 0 30px 0; font-style: italic;">
+                    "+42 new tax clients in 90 days. Best ROI we've ever had."
+                </blockquote>
+                <cite style="color: var(--silver-light); font-size: 18px; font-style: normal;">— Sarah Chen, CPA, North Sydney</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Focus Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Lead Generation for Accountants – Sydney, Melbourne, Brisbane</h2>
+            <p class="section-subtitle" style="margin-bottom: 40px;">We target <strong style="color: var(--gold);">high-intent tax searches</strong> in your postcode:</p>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <ul class="service-features-list" style="list-style: none; padding: 0;">
+                    <li style="padding: 20px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 15px; color: var(--silver-light); font-size: 18px;">
+                        <strong style="color: var(--gold);">Sydney CBD & North Shore</strong> – 1,200+ monthly searches
+                    </li>
+                    <li style="padding: 20px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 15px; color: var(--silver-light); font-size: 18px;">
+                        <strong style="color: var(--gold);">Melbourne CBD & Eastern Suburbs</strong> – 1,000+ monthly searches
+                    </li>
+                    <li style="padding: 20px; background: var(--black-light); border-left: 4px solid var(--gold); margin-bottom: 15px; color: var(--silver-light); font-size: 18px;">
+                        <strong style="color: var(--gold);">Brisbane CBD & Southside</strong> – 800+ monthly searches
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -360,48 +435,30 @@ include TEMPLATES_PATH . '/header.php';
     </section>
 
 
-    <!-- Testimonials Preview -->
-    <section class="testimonials-section">
+    <!-- Final CTA Section -->
+    <section id="contact" class="contact-section section-dark">
         <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <p class="section-subtitle">Trusted by accounting firms across Australia</p>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">TaxPro.au transformed our practice. The AI receptionist alone has saved us 15 hours per week, and the Google Ads campaigns are bringing in high-quality leads consistently.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">JD</div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">James Davidson</p>
-                            <p class="testimonial-role">Principal, Davidson Tax Services</p>
-                        </div>
+            <h2 class="section-title">Ready for More Tax Clients?</h2>
+            <p class="section-subtitle">Book a 5-min strategy call. No obligation.</p>
+            <div style="max-width: 600px; margin: 50px auto;">
+                <form id="footer-contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="firm_name" placeholder="Your Firm Name" required>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">We've seen a 250% increase in new client inquiries since implementing their marketing solution. The ROI is incredible, and the support team is always responsive.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">LM</div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">Lisa Morgan</p>
-                            <p class="testimonial-role">Director, Morgan Accounting Group</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">Best investment we've made for our firm. The website looks professional, the AI handles calls perfectly, and we're getting more qualified leads than ever before.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">RW</div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">Robert Williams</p>
-                            <p class="testimonial-role">Founder, Williams & Co Accountants</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone" required>
                     </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="/testimonials" class="cta-button">Read More Testimonials</a>
+                    <!-- Honeypot field -->
+                    <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                    <button type="submit" class="cta-button" style="width: 100%; background: #FF6B35; border-color: #FF6B35; color: var(--white);">Get My 30 Leads →</button>
+                    <div id="form-message" class="form-message"></div>
+                </form>
+                <p style="text-align: center; color: var(--silver); font-size: 14px; margin-top: 20px;">
+                    100% privacy. Leads delivered within 48 hours.
+                </p>
             </div>
         </div>
     </section>

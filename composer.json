@@ -1,6 +1,6 @@
 {
-    "name": "taxpro-au/website",
-    "description": "TaxPro.au marketing website for accounting firms",
+    "name": "leadgentax-au/website",
+    "description": "LeadGenTax.au marketing website for accounting firms",
     "type": "project",
     "require": {
         "php": ">=7.4"
@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "TaxPro\\": "includes/"
+            "LeadGenTax\\": "includes/"
         }
     }
 }

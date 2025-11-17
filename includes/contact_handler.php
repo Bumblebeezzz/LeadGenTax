@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact Form Handler - TaxPro.au
+ * Contact Form Handler - LeadGenTax.au
  * Validates form data and sends to Google Sheets + Telegram
  */
 
@@ -217,7 +217,7 @@ function send_to_telegram($data) {
         return false;
     }
     
-    $message = "🔔 *New Lead from TaxPro.au*\n\n";
+    $message = "🔔 *New Lead from LeadGenTax.au*\n\n";
     $message .= "👤 *Name:* " . $data['first_name'] . " " . $data['last_name'] . "\n";
     $message .= "📧 *Email:* " . $data['email'] . "\n";
     if (!empty($data['firm_name'])) {

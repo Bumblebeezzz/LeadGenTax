@@ -1,14 +1,19 @@
 <?php
 /**
- * Testimonials Page - TaxPro.au
+ * Testimonials Page - LeadGenTax.au
  */
 require_once __DIR__ . '/includes/config.php';
 
 $page_title = 'Testimonials - ' . SITE_NAME;
-$page_description = 'Read what accounting firms across Australia say about TaxPro.au and our marketing solutions.';
+$page_description = 'Read what accounting firms across Australia say about LeadGenTax.au and our marketing solutions.';
 
 include TEMPLATES_PATH . '/header.php';
 ?>
+
+    <!-- Orange Banner -->
+    <div style="background: #FF6B35; color: var(--white); text-align: center; padding: 15px 0; font-weight: 600; font-size: 16px; letter-spacing: 0.5px; position: relative; z-index: 999;">
+        🌟 220+ Accounting Firms Trust Us – Join Them
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -23,8 +28,8 @@ include TEMPLATES_PATH . '/header.php';
         <div class="container">
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">TaxPro.au transformed our practice. The AI receptionist alone has saved us 15 hours per week, and the Google Ads campaigns are bringing in high-quality leads consistently. We've seen a 200% increase in new clients since implementing their solution.</p>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
+                    <p class="testimonial-text">LeadGenTax.au transformed our practice. The AI receptionist alone has saved us 15 hours per week, and the Google Ads campaigns are bringing in high-quality leads consistently. We've seen a 200% increase in new clients since implementing their solution.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">JD</div>
                         <div class="testimonial-info">
@@ -34,7 +39,7 @@ include TEMPLATES_PATH . '/header.php';
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
                     <p class="testimonial-text">We've seen a 250% increase in new client inquiries since implementing their marketing solution. The ROI is incredible, and the support team is always responsive. Best decision we made for our firm's growth.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">LM</div>
@@ -45,8 +50,8 @@ include TEMPLATES_PATH . '/header.php';
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">Best investment we've made for our firm. The website looks professional, the AI handles calls perfectly, and we're getting more qualified leads than ever before. The team at TaxPro.au truly understands our business.</p>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
+                    <p class="testimonial-text">Best investment we've made for our firm. The website looks professional, the AI handles calls perfectly, and we're getting more qualified leads than ever before. The team at LeadGenTax.au truly understands our business.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">RW</div>
                         <div class="testimonial-info">
@@ -56,7 +61,7 @@ include TEMPLATES_PATH . '/header.php';
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
                     <p class="testimonial-text">The AI receptionist is a game-changer. It never misses a call, books appointments accurately, and our clients can't tell the difference. Combined with the Google Ads campaigns, we're seeing steady growth month over month.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">SM</div>
@@ -67,8 +72,8 @@ include TEMPLATES_PATH . '/header.php';
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">Professional, reliable, and results-driven. TaxPro.au helped us modernize our marketing approach without breaking the bank. The monthly reports keep us informed, and the ROI speaks for itself.</p>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
+                    <p class="testimonial-text">Professional, reliable, and results-driven. LeadGenTax.au helped us modernize our marketing approach without breaking the bank. The monthly reports keep us informed, and the ROI speaks for itself.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">PT</div>
                         <div class="testimonial-info">
@@ -78,8 +83,8 @@ include TEMPLATES_PATH . '/header.php';
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">We were skeptical about AI at first, but TaxPro.au proved us wrong. The receptionist handles everything perfectly, and we've freed up significant time to focus on client work. Highly recommended.</p>
+                    <div class="testimonial-rating" style="color: #FFD700;">★★★★★</div>
+                    <p class="testimonial-text">We were skeptical about AI at first, but LeadGenTax.au proved us wrong. The receptionist handles everything perfectly, and we've freed up significant time to focus on client work. Highly recommended.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">AC</div>
                         <div class="testimonial-info">
@@ -96,7 +101,7 @@ include TEMPLATES_PATH . '/header.php';
     <section class="section section-dark">
         <div class="container" style="text-align: center;">
             <h2 class="section-title">Join Our Success Stories</h2>
-            <p class="section-subtitle">See what TaxPro.au can do for your accounting practice</p>
+            <p class="section-subtitle">See what LeadGenTax.au can do for your accounting practice</p>
             <a href="/contact" class="cta-button" style="margin-top: 40px;">Get Your Free Audit</a>
         </div>
     </section>
