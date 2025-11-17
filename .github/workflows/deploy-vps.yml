@@ -17,51 +17,101 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts 2>&1
+          echo "✅ SSH configuré"
+          echo "🔍 Test de connexion SSH..."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} "echo 'Connexion SSH réussie'" || {
+            echo "❌ Échec de la connexion SSH"
+            exit 1
+          }
       
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
             set -e
+            set -x  # Mode debug activé
+            
             echo "🚀 Début du déploiement..."
+            echo "📍 Répertoire actuel: $(pwd)"
+            echo "👤 Utilisateur: $(whoami)"
             
             # Créer le répertoire s'il n'existe pas
+            echo "📁 Création/vérification du répertoire..."
             mkdir -p /var/www/leadgentax.au
-            cd /var/www/leadgentax.au || exit 1
+            cd /var/www/leadgentax.au || {
+              echo "❌ Impossible d'accéder à /var/www/leadgentax.au"
+              exit 1
+            }
+            echo "✅ Répertoire: $(pwd)"
             
             # Mettre à jour via Git
             if [ -d ".git" ]; then
-              echo "📥 Mise à jour via git pull..."
-              git fetch origin main || true
+              echo "📥 Repository Git détecté, mise à jour..."
+              echo "🔍 État actuel:"
+              git status --short || true
+              git remote -v || true
+              
+              echo "📥 Fetch depuis origin..."
+              git fetch origin main || {
+                echo "⚠️ git fetch échoué, tentative de réinitialisation..."
+                git remote set-url origin https://github.com/Bumblebeezzz/LeadGenTax.git || true
+                git fetch origin main || true
+              }
+              
+              echo "🔄 Reset vers origin/main..."
               git reset --hard origin/main || {
                 echo "⚠️ git reset échoué, tentative avec git pull..."
-                git pull origin main || exit 1
+                git pull origin main || {
+                  echo "❌ git pull échoué"
+                  exit 1
+                }
               }
+              echo "✅ Mise à jour Git réussie"
             else
-              echo "📥 Clonage du repository..."
-              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp || exit 1
+              echo "📥 Pas de repository Git, clonage..."
+              if [ -f "/tmp/leadgentax_temp/.git/config" ]; then
+                rm -rf /tmp/leadgentax_temp
+              fi
+              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp || {
+                echo "❌ Échec du clonage"
+                exit 1
+              }
+              
+              echo "📋 Copie des fichiers..."
               rm -rf /var/www/leadgentax.au/* /var/www/leadgentax.au/.[!.]* 2>/dev/null || true
-              cp -r /tmp/leadgentax_temp/* /var/www/leadgentax.au/ || exit 1
+              cp -r /tmp/leadgentax_temp/* /var/www/leadgentax.au/ || {
+                echo "❌ Échec de la copie"
+                exit 1
+              }
               cp -r /tmp/leadgentax_temp/.git /var/www/leadgentax.au/ 2>/dev/null || true
               rm -rf /tmp/leadgentax_temp
+              echo "✅ Clonage et copie réussis"
             fi
             
             # Permissions
             echo "🔐 Mise à jour des permissions..."
-            chmod -R 755 . || true
-            find . -type f -exec chmod 644 {} \; || true
-            chmod 755 router.php index.php 2>/dev/null || true
+            chmod -R 755 . || echo "⚠️ Erreur chmod 755"
+            find . -type f -exec chmod 644 {} \; || echo "⚠️ Erreur chmod 644"
+            chmod 755 router.php index.php 2>/dev/null || echo "⚠️ Erreur chmod router/index"
             
             # Propriétaire
+            echo "👤 Mise à jour du propriétaire..."
             if id "www-data" &>/dev/null; then
-              chown -R www-data:www-data . 2>/dev/null || true
+              chown -R www-data:www-data . 2>/dev/null || echo "⚠️ Erreur chown www-data"
+              echo "✅ Propriétaire: www-data"
             elif id "nginx" &>/dev/null; then
-              chown -R nginx:nginx . 2>/dev/null || true
+              chown -R nginx:nginx . 2>/dev/null || echo "⚠️ Erreur chown nginx"
+              echo "✅ Propriétaire: nginx"
+            else
+              echo "⚠️ Aucun utilisateur www-data ou nginx trouvé"
             fi
             
             echo "✅ Déploiement terminé avec succès"
+            echo "📊 Vérification finale:"
+            ls -la /var/www/leadgentax.au/ | head -5
           EOF
       
       - name: Cleanup
