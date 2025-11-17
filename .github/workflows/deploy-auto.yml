@@ -1,0 +1,54 @@
+name: Auto Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts
+      
+      - name: Upload and Execute Install Script
+        run: |
+          scp -i ~/.ssh/id_rsa install.sh root@${{ secrets.HOSTINGER_VPS_IP }}:/tmp/
+          ssh -i ~/.ssh/id_rsa root@${{ secrets.HOSTINGER_VPS_IP }} "chmod +x /tmp/install.sh && /tmp/install.sh"
+      
+      - name: Deploy Files via Git
+        run: |
+          ssh -i ~/.ssh/id_rsa root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+            cd /root/domains/leadgentax.au/public_html
+            if [ -d ".git" ]; then
+              git pull origin main || (git fetch && git reset --hard origin/main)
+            else
+              git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp
+              rm -rf /root/domains/leadgentax.au/public_html/*
+              cp -r /tmp/leadgentax_temp/* /root/domains/leadgentax.au/public_html/
+              cp -r /tmp/leadgentax_temp/.git /root/domains/leadgentax.au/public_html/ 2>/dev/null || true
+              rm -rf /tmp/leadgentax_temp
+            fi
+            find . -type f -exec chmod 644 {} \;
+            find . -type d -exec chmod 755 {} \;
+            chmod 755 router.php index.php 2>/dev/null || true
+            if id "www-data" &>/dev/null; then
+              chown -R www-data:www-data . 2>/dev/null || true
+            fi
+          EOF
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa
+
