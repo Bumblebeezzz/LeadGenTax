@@ -3,10 +3,7 @@ services:
     name: leadgentax-website
     env: php
     plan: free
-    buildCommand: |
-      if [ -f composer.json ]; then
-        composer install --no-dev --optimize-autoloader
-      fi
+    buildCommand: echo "No build required for PHP"
     startCommand: php -S 0.0.0.0:$PORT router.php
     envVars:
       - key: PHP_VERSION
