@@ -14,14 +14,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Base configuration
 define('SITE_NAME', 'LeadGenTax');
-define('SITE_URL', 'https://leadgentax.au');
+define('SITE_URL', 'https://leadgentax.com.au');
 define('BASE_PATH', dirname(__DIR__));
 define('INCLUDES_PATH', BASE_PATH . '/includes');
 define('TEMPLATES_PATH', BASE_PATH . '/templates');
 define('STATIC_PATH', BASE_PATH . '/static');
 
 // Contact configuration
-define('CONTACT_EMAIL', 'contact@LeadGenTax.au');
+define('CONTACT_EMAIL', 'contact@leadgentax.com.au');
 define('CONTACT_PHONE', '1300 19 19 30');
 
 // Google Sheets API Configuration
