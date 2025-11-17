@@ -16,6 +16,10 @@ cd /var/www/leadgentax.au || {
 }
 echo "✅ Répertoire: $(pwd)"
 
+# Configurer Git pour éviter l'erreur "dubious ownership"
+echo "🔧 Configuration Git..."
+git config --global --add safe.directory /var/www/leadgentax.au || true
+
 # Mettre à jour via Git
 if [ -d ".git" ]; then
     echo "📥 Repository Git détecté, mise à jour..."
