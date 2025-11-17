@@ -25,7 +25,7 @@ function generate_meta_tags($title, $description, $image = '') {
     
     $html = "\n";
     $html .= "    <meta name=\"description\" content=\"" . e($description) . "\">\n";
-    $html .= "    <meta name=\"keywords\" content=\"accounting lead generation Sydney, tax client acquisition Australia, CPA lead gen Melbourne, accountant marketing Brisbane\">\n";
+    $html .= "    <meta name=\"keywords\" content=\"accounting lead generation Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin, tax client acquisition Australia, CPA lead gen\">\n";
     $html .= "    <meta name=\"author\" content=\"" . e($site_name) . "\">\n";
     $html .= "\n";
     $html .= "    <!-- Open Graph / Facebook -->\n";
