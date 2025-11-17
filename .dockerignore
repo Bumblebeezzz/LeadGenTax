@@ -1,0 +1,8 @@
+.git
+.gitignore
+README.md
+README_RENDER.md
+INSTRUCTIONS_RENDER.md
+*.md
+.DS_Store
+

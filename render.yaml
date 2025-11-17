@@ -1,14 +1,10 @@
 services:
   - type: web
     name: leadgentax-website
-    env: php
+    env: docker
     plan: free
-    buildCommand: ""
-    startCommand: php -S 0.0.0.0:$PORT router.php
-    envVars:
-      - key: PHP_VERSION
-        value: 8.1
+    dockerfilePath: Dockerfile
+    dockerContext: .
     healthCheckPath: /
     autoDeploy: true
-    dockerfilePath: ""
 
