@@ -5,10 +5,41 @@
 ### 1. Type de Compte
 - ✅ **Cloud Hosting** : Premium Web Hosting (2 websites) + Business Web Hosting (3 websites)
 - ✅ **VPS** : 2 instances VPS actives (KVM 2)
-  - `srv495690.hstgr.cloud` - IP: `89.116.134.53` (expire 2025-12-21)
-  - `srv508687.hstgr.cloud` - IP: `91.108.105.32` (expire 2026-04-14)
 
-**🎯 Recommandation** : Utiliser une des instances VPS pour LeadGenTax (plus de flexibilité)
+#### VPS 1 : `srv495690.hstgr.cloud`
+- **IP** : `89.116.134.53`
+- **OS** : Ubuntu 23.04
+- **Statut** : Running (88 days 17 hours uptime)
+- **Ressources** :
+  - CPU : 2 cores (3% usage actuel)
+  - Memory : 8 GB (18% usage actuel)
+  - Disk : 100 GB (23 GB utilisé = 23%)
+  - Bandwidth : 8 TB (0.042 TB utilisé)
+- **Expiration** : 2025-12-21
+- **Location** : India - Mumbai
+- **SSH Access** : `ssh root@89.116.134.53`
+- **Sécurité** : 1 SSH key, 0 firewall rules, 2 snapshots, Malware scanner Active
+
+#### VPS 2 : `srv508687.hstgr.cloud` ⭐ **RECOMMANDÉ**
+- **IP** : `91.108.105.32`
+- **OS** : Ubuntu 22.04 LTS
+- **Statut** : Running (198 days 19 hours uptime)
+- **Ressources** :
+  - CPU : 2 cores (1% usage actuel)
+  - Memory : 8 GB (18% usage actuel)
+  - Disk : 100 GB (24 GB utilisé = 24%)
+  - Bandwidth : 8 TB (0.001 TB utilisé)
+- **Expiration** : 2026-04-14
+- **Location** : India - Mumbai
+- **SSH Access** : `ssh root@91.108.105.32`
+- **Sécurité** : 1 SSH key, 0 firewall rules, 2 snapshots, Malware scanner Not installed
+
+**🎯 Recommandation** : Utiliser **`srv508687.hstgr.cloud`** car :
+- ✅ Expire plus tard (2026-04-14 vs 2025-12-21)
+- ✅ Plus stable (198 jours uptime vs 88 jours)
+- ✅ Moins de charge CPU (1% vs 3%)
+- ✅ Plus d'espace disque disponible (76 GB vs 77 GB)
+- ⚠️ Note : Malware scanner non installé (à installer)
 
 ---
 
@@ -38,20 +69,30 @@
 
 ### Étape 1 : Accéder au VPS
 
-1. Dans hPanel, cliquez sur **VPS** → **Manage** sur une des instances
-2. Notez les informations suivantes :
+1. Dans hPanel, cliquez sur **VPS** → **Manage** sur **`srv508687.hstgr.cloud`** (recommandé)
+2. **SSH Access** : `ssh root@91.108.105.32`
+3. Notez les informations suivantes :
 
-#### Pour `srv495690.hstgr.cloud` ou `srv508687.hstgr.cloud` :
+#### Structure à Vérifier :
 
-- [ ] **Répertoire racine** : `/home/username/` ou `/var/www/` ?
+- [ ] **Répertoire racine** : `/root/` ou `/home/` ?
 - [ ] **Structure des sites existants** :
-  - Où est installé `earthstralia.com` ? `/home/username/domains/earthstralia.com/public_html/` ?
-  - Où sont les autres sites ?
+  - Où est installé `earthstralia.com` ?
+  - Structure typique Hostinger : `/root/domains/` ou `/var/www/`
 
 **Comment trouver** :
-1. Cliquez sur **VPS** → **Manage** → **File Manager**
-2. Naviguez dans la structure de dossiers
-3. Notez où sont les sites existants
+1. Cliquez sur **VPS** → **Manage** → **Terminal** (bouton en haut à droite)
+2. Ou utilisez **File Manager** dans le VPS
+3. Naviguez dans la structure de dossiers
+4. Notez où sont les sites existants
+
+**Commandes SSH utiles** :
+```bash
+ssh root@91.108.105.32
+cd /root
+ls -la
+find . -name "earthstralia" -type d 2>/dev/null
+```
 
 ---
 
@@ -75,16 +116,25 @@ Sur le VPS, la structure typique est :
 
 ### Étape 3 : Accès FTP/SFTP
 
-1. Dans hPanel, allez dans **VPS** → **Manage** → **FTP Accounts**
-2. Notez :
-   - [ ] **Host FTP** : `ftp.leadgentax.au` ou IP du VPS ?
-   - [ ] **Port** : 21 (FTP) ou 22 (SFTP) ?
-   - [ ] **Username** : Créer un compte FTP séparé pour LeadGenTax
+1. Dans hPanel, allez dans **VPS** → **Manage** → **Settings** → **FTP Accounts**
+2. Ou utilisez **SSH** pour créer un utilisateur FTP
+3. Notez :
+   - [ ] **Host FTP** : `91.108.105.32` (IP du VPS) ou `ftp.leadgentax.au` (si domaine configuré)
+   - [ ] **Port** : 21 (FTP) ou 22 (SFTP/SSH)
+   - [ ] **Username** : Créer un utilisateur système dédié
    - [ ] **Password** : Générer un mot de passe fort
 
-**Recommandation** : Créer un compte FTP dédié :
-- Username : `leadgentax` ou `leadgentax@leadgentax.au`
-- Directory : `/home/username/domains/leadgentax.au/public_html/`
+**Recommandation** : Créer un utilisateur système via SSH :
+```bash
+ssh root@91.108.105.32
+adduser leadgentax
+# Suivre les instructions pour définir le mot de passe
+usermod -aG www-data leadgentax
+mkdir -p /root/domains/leadgentax.au/public_html
+chown -R leadgentax:www-data /root/domains/leadgentax.au
+```
+
+**Alternative** : Utiliser SFTP avec l'utilisateur `root` (moins sécurisé mais plus simple)
 
 ---
 
