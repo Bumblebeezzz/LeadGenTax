@@ -22,15 +22,13 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts 2>&1
           echo "✅ SSH configuré"
-          echo "🔍 Test de connexion SSH..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} "echo 'Connexion SSH réussie'" || {
-            echo "❌ Échec de la connexion SSH"
-            exit 1
-          }
       
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 -v root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF' || {
+            echo "❌ Échec de la connexion SSH"
+            exit 1
+          }
             set -e
             set -x  # Mode debug activé
             

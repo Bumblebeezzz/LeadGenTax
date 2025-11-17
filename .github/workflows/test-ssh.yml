@@ -1,0 +1,37 @@
+name: Test SSH Connection
+
+on:
+  workflow_dispatch:  # Déclenchement manuel uniquement
+
+jobs:
+  test-ssh:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOSTINGER_VPS_IP }} >> ~/.ssh/known_hosts 2>&1
+          echo "✅ Clé SSH configurée"
+          echo "🔍 Test de connexion..."
+      
+      - name: Test SSH Connection
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 -v root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+            echo "✅ Connexion SSH réussie"
+            echo "📍 Répertoire: $(pwd)"
+            echo "👤 Utilisateur: $(whoami)"
+            echo "🔍 Test accès /var/www/leadgentax.au:"
+            ls -la /var/www/leadgentax.au/ 2>&1 | head -10 || echo "Répertoire n'existe pas ou pas accessible"
+            echo "🔍 Test Git:"
+            cd /var/www/leadgentax.au 2>/dev/null && git status 2>&1 || echo "Pas de repository Git"
+          EOF
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa
+
