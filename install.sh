@@ -59,24 +59,28 @@ fi
 PHP_VERSION=$(php -v | head -n 1 | cut -d " " -f 2 | cut -d "." -f 1,2)
 info "PHP version: $PHP_VERSION"
 
-# Vérifier qu'il n'y a pas de conflit avec tradeasy
+# Vérifier qu'il n'y a pas de conflit avec tradeasy ou autres sites
 info "Vérification des conflits potentiels..."
-if [ -d "/root/domains/tradeasy" ] || [ -d "/var/www/tradeasy" ]; then
-    warn "Tradeasy détecté. Vérification de l'isolation..."
-    if [ -d "$INSTALL_DIR" ] && [ -f "$INSTALL_DIR/index.php" ]; then
-        # Vérifier que ce n'est pas le même site
-        if grep -q "LeadGenTax" "$INSTALL_DIR/index.php" 2>/dev/null; then
-            info "LeadGenTax déjà installé dans $INSTALL_DIR"
-        else
-            warn "Un autre site est présent dans $INSTALL_DIR"
-            read -p "Voulez-vous continuer? (y/n) " -n 1 -r
-            echo
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                error "Installation annulée"
-            fi
-        fi
+
+# Chercher tradeasy dans différents emplacements
+TRADEASY_FOUND=false
+if find /var/www /root /home -name "*tradeasy*" -type d 2>/dev/null | grep -q .; then
+    TRADEASY_FOUND=true
+    info "Tradeasy détecté ailleurs. Vérification de l'isolation..."
+fi
+
+# Vérifier que le répertoire d'installation n'est pas déjà utilisé par un autre site
+if [ -d "$INSTALL_DIR" ] && [ -f "$INSTALL_DIR/index.php" ]; then
+    # Vérifier que ce n'est pas le même site
+    if grep -q "LeadGenTax" "$INSTALL_DIR/index.php" 2>/dev/null; then
+        info "LeadGenTax déjà installé dans $INSTALL_DIR"
+    else
+        warn "Un autre site est présent dans $INSTALL_DIR"
+        warn "Création d'un backup avant installation..."
     fi
 fi
+
+info "Répertoire d'installation détecté: $INSTALL_DIR"
 
 # Créer le répertoire d'installation
 info "Création du répertoire d'installation..."
