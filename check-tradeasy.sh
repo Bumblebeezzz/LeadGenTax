@@ -38,7 +38,10 @@ section() {
 # Vérifier si on est sur le VPS ou si on doit se connecter
 if [ "$(hostname)" != "srv508687" ] && [ "$(hostname)" != "srv495690" ]; then
     info "Connexion au VPS pour vérifier..."
-    ssh "${VPS_USER}@${VPS_IP}" "bash -s" < <(cat "$0")
+    # Accepter automatiquement la clé SSH
+    ssh-keyscan -H "${VPS_IP}" >> ~/.ssh/known_hosts 2>/dev/null || true
+    # Exécuter le script sur le VPS
+    ssh -o StrictHostKeyChecking=no "${VPS_USER}@${VPS_IP}" "bash -s" < <(cat "$0")
     exit 0
 fi
 
