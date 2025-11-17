@@ -12,8 +12,8 @@ include TEMPLATES_PATH . '/header.php';
 
     <!-- Hero Section -->
     <section class="hero" style="position: relative; overflow: hidden; min-height: 90vh; display: flex; align-items: center; justify-content: center;">
-        <!-- Background Image Fallback (behind video) -->
-        <img src="/static/images/hero-fallback.png" alt="Professional business meeting" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; object-fit: cover; opacity: 0.4;">
+        <!-- Background Image Fallback (behind video) - Hidden when video loads -->
+        <img id="hero-fallback" src="/static/images/hero-fallback.png" alt="Professional business meeting" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; object-fit: cover; opacity: 0.4;">
         <!-- Background Video (in front of image) -->
         <video id="hero-video" autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 1; object-fit: cover; opacity: 0.4;">
             <source src="/static/videos/LeadGenTax.mov" type="video/quicktime">

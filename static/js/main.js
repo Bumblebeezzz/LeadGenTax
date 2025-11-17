@@ -195,24 +195,37 @@ document.addEventListener('DOMContentLoaded', function() {
     handleFormSubmit('popup-contact-form', 'popup-form-message');
 });
 
-// Video fallback handler - hide video if it fails to load, show image
+// Video fallback handler - hide image when video loads, show image if video fails
 document.addEventListener('DOMContentLoaded', function() {
     const heroVideo = document.getElementById('hero-video');
-    if (heroVideo) {
+    const heroFallback = document.getElementById('hero-fallback');
+    
+    if (heroVideo && heroFallback) {
+        // Hide fallback image when video starts playing
+        heroVideo.addEventListener('playing', function() {
+            heroFallback.style.display = 'none';
+        }, { once: true });
+
+        // Hide fallback image when video has loaded data
+        heroVideo.addEventListener('loadeddata', function() {
+            if (heroVideo.readyState >= 2) {
+                heroFallback.style.display = 'none';
+            }
+        }, { once: true });
+
+        // If video fails to load, show fallback image
         heroVideo.addEventListener('error', function() {
-            // Video failed to load, it will fall back to the background image
+            heroFallback.style.display = 'block';
             this.style.display = 'none';
         });
-        
-        // Check if video can actually play
-        heroVideo.addEventListener('loadeddata', function() {
-            // Video loaded successfully
-        }, { once: true });
-        
-        // If video doesn't start playing after 3 seconds, hide it
+
+        // If video doesn't start playing after 3 seconds, show fallback
         setTimeout(function() {
-            if (heroVideo.readyState < 2) {
+            if (heroVideo.readyState < 2 || heroVideo.paused) {
+                heroFallback.style.display = 'block';
                 heroVideo.style.display = 'none';
+            } else {
+                heroFallback.style.display = 'none';
             }
         }, 3000);
     }
