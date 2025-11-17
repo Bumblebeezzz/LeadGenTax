@@ -24,9 +24,11 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
+            set -e
             cd /var/www/leadgentax.au
             if [ -d ".git" ]; then
-              git pull origin main
+              git fetch origin main || true
+              git reset --hard origin/main || git pull origin main
             else
               git clone https://github.com/Bumblebeezzz/LeadGenTax.git /tmp/leadgentax_temp
               rm -rf /var/www/leadgentax.au/*
@@ -42,6 +44,7 @@ jobs:
             elif id "nginx" &>/dev/null; then
               chown -R nginx:nginx . 2>/dev/null || true
             fi
+            echo "✅ Déploiement terminé avec succès"
           EOF
       
       - name: Cleanup
