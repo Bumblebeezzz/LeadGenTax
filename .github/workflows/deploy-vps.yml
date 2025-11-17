@@ -25,10 +25,7 @@ jobs:
       
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 -v root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF' || {
-            echo "❌ Échec de la connexion SSH"
-            exit 1
-          }
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@${{ secrets.HOSTINGER_VPS_IP }} << 'EOF'
             set -e
             set -x  # Mode debug activé
             
