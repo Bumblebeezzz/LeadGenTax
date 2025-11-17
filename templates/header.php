@@ -27,11 +27,10 @@ $is_home = ($current_path === '/' || $current_path === '/index.php' || empty($cu
     <?php echo generate_meta_tags($page_title, $page_description, $page_image); ?>
     <!-- SEO Keywords: accounting lead generation Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin, tax client acquisition Australia, CPA lead gen -->
     <!-- Favicon - LeadGenTax LGT Logo -->
-    <link rel="icon" type="image/png" href="/static/images/logo-lgt.png">
-    <link rel="shortcut icon" type="image/png" href="/static/images/logo-lgt.png">
-    <link rel="apple-touch-icon" href="/static/images/logo-lgt.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/logo-lgt.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/logo-lgt.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32-lgt.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16-lgt.png">
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon-32x32-lgt.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon-lgt.png">
     
     <!-- Google Fonts - Playfair Display + Lora -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
