@@ -1,0 +1,6 @@
+# Ignore Node.js files to prevent auto-detection
+package.json
+package-lock.json
+yarn.lock
+node_modules/
+
